@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+<BaseLayout title={product.data.title} description={product.data.description}>
+  <article>
+    <h1>{product.data.title}</h1>
+    {product.data.image && <img src={product.data.image} alt={product.data.title} />}
+    <p><strong>Prix :</strong> {product.data.price} €{product.data.oldPrice && ` <span class="old-price">{product.data.oldPrice} €</span>`}</p>
+    <p>{product.data.description}</p>
+    {product.data.specs && (
+      <section>
+        <h2>Spécifications</h2>
+        <ul>
+          {Object.entries(product.data.specs).map(([key, value]) => (
+            <li key={key}>
+              <strong>{key}:</strong> {value}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+    <a href={product.data.affiliateUrl} rel="nofollow" target="_blank" class="btn-buy">
+      Voir sur Decathlon
+    </a>
+  </article>
+</BaseLayout>

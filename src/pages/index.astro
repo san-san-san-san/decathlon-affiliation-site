@@ -1,17 +1,30 @@
 ---
-
+import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
+<BaseLayout title="Accueil" description="Guide d'achat et comparatifs des produits Décathlon avec liens affiliés">
+  <header>
+    <h1>Prince du Monde</h1>
+    <p>Votre guide d'affiliation Décathlon spécialisé en SEO</p>
+  </header>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <main>
+    <section>
+      <h2>Produits populaires</h2>
+      <!-- Les produits seront injectés ici par le scraper -->
+      <p>Chargement des produits...</p>
+    </section>
+
+    <section>
+      <h2>Guides d'achat</h2>
+      <ul>
+        <li><a href="/guides/velo">Guide vélo</a></li>
+        <li><a href="/guides/fitness">Guide fitness</a></li>
+        <li><a href="/guides/randonnee">Guide randonnée</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Prince du Monde. Tous droits réservés.</p>
+  </footer>
+</BaseLayout>

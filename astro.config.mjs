@@ -1,5 +1,11 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://princedumonde.fr', // Replace with your actual domain
+  trailingSlash: 'never',
+  markdown: {
+    shikiConfig: {
+      theme: 'dark-plus',
+    },
+  },
+});

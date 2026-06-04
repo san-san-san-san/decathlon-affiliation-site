@@ -1,0 +1,54 @@
+---
+// BaseLayout.astro - Layout commun avec SEO intégré
+export const props = {
+  title: '',
+  description: '',
+  canonicalUrl: '',
+  // Optional Open Graph
+  ogImage: '',
+  ogType: 'website',
+  // Optional structured data
+  schemaOrg: {},
+};
+
+const { title, description, canonicalUrl, ogImage, ogType, schemaOrg } = Astro.props;
+
+// Default values
+const siteTitle = title ? `${title} | Prince du Monde` : 'Prince du Monde - Site d'affiliation Décathlon';
+const siteDescription = description || 'Guide d\'achat et comparatifs des produits Décathlon avec liens affiliés';
+const siteUrl = 'https://princedumonde.fr'; // À remplacer par votre domaine réel
+const finalCanonical = canonicalUrl || siteUrl;
+---
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{siteTitle}</title>
+    <meta name="description" content="{siteDescription}" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{finalCanonical}" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{ogType}" />
+    <meta property="og:url" content="{finalCanonical}" />
+    <meta property="og:title" content="{title}" />
+    <meta property="og:description" content="{description}" />
+    {ogImage && `<meta property="og:image" content="{ogImage}" />`}
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="{finalCanonical}" />
+    <meta property="twitter:title" content="{title}" />
+    <meta property="twitter:description" content="{description}" />
+    {ogImage && `<meta property="twitter:image" content="{ogImage}" />`}
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Schema.org structured data -->
+    {schemaOrg && `<script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>`}
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
