@@ -20,37 +20,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          echo "=== DEBUG INFO ==="
-          echo "Node version: $(node --version)"
-          echo "Python version: $(python --version)"
-          echo "Current directory: $(pwd)"
-          echo "Files in directory:"
-          ls -la
-          echo "Contents of scraper/requirements.txt:"
-          cat scraper/requirements.txt
-          echo "=================="
           pip install -r scraper/requirements.txt
-          npm ci
+          npm install --no-audit --no-fund
 
       - name: Run scraper
         env:
           DECATHLON_AFFILIATE_ID: ${{ secrets.DECATHLON_AFFILIATE_ID }}
-        run: |
-          echo "=== RUN SCRAPER DEBUG ==="
-          echo "Current directory: $(pwd)"
-          echo "Files in scraper/:"
-          ls -la scraper/
-          echo "========================"
-          python scraper/scrape.py
+        run: python scraper/scrape.py
 
       - name: Build Astro site
-        run: |
-          echo "=== BUILD DEBUG ==="
-          echo "Current directory: $(pwd)"
-          echo "Files in directory:"
-          ls -la
-          echo "==================="
-          npx astro build
+        run: npx astro build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0
