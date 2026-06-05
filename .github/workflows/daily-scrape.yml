@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -21,8 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r scraper/requirements.txt
-          rm -rf package-lock.json node_modules
-          npm install
+          pnpm install
 
       - name: Run scraper
         env:
