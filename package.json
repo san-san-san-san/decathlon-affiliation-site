@@ -13,5 +13,10 @@
   },
   "dependencies": {
     "astro": "^4.15.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.21.5"
+    }
   }
 }
