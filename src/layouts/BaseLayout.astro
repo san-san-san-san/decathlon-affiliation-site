@@ -14,8 +14,8 @@ export const props = {
 const { title, description, canonicalUrl, ogImage, ogType, schemaOrg } = Astro.props;
 
 // Default values
-const siteTitle = title ? `${title} | Prince du Monde` : 'Prince du Monde - Site d'affiliation Décathlon';
-const siteDescription = description || 'Guide d\'achat et comparatifs des produits Décathlon avec liens affiliés';
+const siteTitle = title ? `${title} | Prince du Monde` : "Prince du Monde - Site d'affiliation Décathlon";
+const siteDescription = description || "Guide d'achat et comparatifs des produits Décathlon avec liens affiliés";
 const siteUrl = 'https://princedumonde.fr'; // À remplacer par votre domaine réel
 const finalCanonical = canonicalUrl || siteUrl;
 ---

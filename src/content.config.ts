@@ -21,7 +21,7 @@ const products = defineCollection({
 });
 
 const categories = defineCollection({
-  loader: glob({ pattern: "*.md", base: "src/content/categories" }),
+  loader: glob({ pattern: "**/*.md", base: "src/content/categories" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -31,7 +31,7 @@ const categories = defineCollection({
 });
 
 const guides = defineCollection({
-  loader: glob({ pattern: "*.md", base: "src/content/guides" }),
+  loader: glob({ pattern: "**/*.md", base: "src/content/guides" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -40,4 +40,4 @@ const guides = defineCollection({
   })
 });
 
-export default { products, categories, guides };
+export const collections = { products, categories, guides };
