@@ -1,8 +1,7 @@
 import { defineCollection, z } from "astro:content";
-import { glob } from "astro/loaders";
 
 const products = defineCollection({
-  loader: glob({ pattern: "*.md", base: "src/content/products" }),
+  type: 'content',
   schema: z.object({
     title: z.string(),
     decathlonId: z.string(),
@@ -21,7 +20,7 @@ const products = defineCollection({
 });
 
 const categories = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "src/content/categories" }),
+  type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -31,7 +30,7 @@ const categories = defineCollection({
 });
 
 const guides = defineCollection({
-  loader: glob({ pattern: "**/*.md", base: "src/content/guides" }),
+  type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
