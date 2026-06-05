@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r scraper/requirements.txt
-          rm -f package-lock.json
+          rm -rf package-lock.json node_modules
           npm install
 
       - name: Run scraper
